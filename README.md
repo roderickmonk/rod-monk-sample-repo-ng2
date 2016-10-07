@@ -11,16 +11,16 @@ All data that is accessible from this site is 'fake data', hence no damage can a
 <b>Technical Notes</b>
 The following notes provides some summary notes concerning the technologies being employed.
 <ol>
-<li>ES6: Every attempt was made to exercise Javascript ES6 features.</li>
-<li>FP: A similar statement can be made about the Functional Programming style, partly using FP features built into ES6 and partly via the use of lodash.</li>
-<li>FRP: The client side code is using RxJS which supports Functional Reactive Programming and, again, where RxJS can be used over that of any else,<br>then RxJS is preferred.</li>
-<li>socketio: Not all communications with the server are using HTTP.</li>
+<li><b>ES6</b>: Every attempt is made to maximally exercise Javascript ES6 features.</li>
+<li><b>FP</b>: A similar statement can be made about the Functional Programming style, partly using FP features built into ES6 and partly via the use of lodash.</li>
+<li><b>FRP</b>: The client side code is using RxJS which supports Functional Reactive Programming and, again, where RxJS can be used over that of any else,<br>then RxJS is preferred.</li>
+<li><b>socketio</b>: Not all communications with the server are using HTTP.</li>
 <li>To provide all of the content that the legacy 'static' website ('Home page', 'How to Find Us', 'Calendar', 'News', 'About Us', 'Contact Us', etc.</li>
 <li>To be secure (see <b>Security</b> below).</li>
 <li>To be responsive (thru the use of BootStrap)</li>
 <li>To demonstrate the use of REST-ful design principles in the crafting of the API end-points.
 <li>Allow members to 'Login'.</li>
-<li>Allow members to securely 'forget' their password.</li>
+<li>Allow members to securely 'reset' their password.</li>
 <li>Allow members to securely search the Membership contacts details (once logged in).</li>
 <li>Allow the membership to modify their own profile details.</li>
 <li>Allow the members to change their password.</li>
