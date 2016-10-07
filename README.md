@@ -13,7 +13,7 @@ The following notes provides some summary notes concerning the technologies bein
 <ol>
 <li><b>ES6</b>: Every attempt is made to maximally exercise Javascript ES6 features.</li>
 <li><b>FP</b>: A similar statement can be made about the Functional Programming style, partly using FP features built into ES6 and partly via the use of lodash.</li>
-<li><b>FRP</b>: The client side code is using RxJS which supports Functional Reactive Programming and, again, where RxJS can be used instead of something, RxJS is preferred.</li>
+<li><b>FRP</b>: The client side code is using RxJS which supports Functional Reactive Programming and, again, where RxJS can be used instead of something else, RxJS is preferred.</li>
 <li><b>socketio</b>: Not all communications with the server are using HTTP.</li>
 <li>To provide all of the content that the legacy 'static' website ('Home page', 'How to Find Us', 'Calendar', 'News', 'About Us', 'Contact Us', etc.</li>
 <li>To be secure (see <b>Security</b> below).</li>
