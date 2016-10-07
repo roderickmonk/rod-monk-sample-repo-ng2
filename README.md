@@ -53,7 +53,7 @@ Currently running on a Heroku servelet.
 
 ```
 ttc-website-ng2/
-├── App/                                * Where our client-side application code is stored
+├── app/                                * Where our client-side application code is stored
 │   ├── main.ts                         * From where Angular2 bootstraps the applicaton
 │   └── app.component.ts                * The top-level application code (called from main.ts)
 │     
@@ -98,7 +98,6 @@ ttc-website-ng2/
 │   └── search-membership/              * The Search Membership screen
 │   
 ├── Assets/                             * various project assets
-│   ├── css/                            * Project CSS files
 │   └── images/                         * Project images
 │
 ├── build/                              * Webpack distribution output files
@@ -108,17 +107,20 @@ ttc-website-ng2/
 ├── favicon.ico                         * Project favicon
 │
 ├── Server/                             * NodeJS source code
-│   ├── member_roles.ts                 * Role-based access control (RBAC) configuration
+│   ├── BugTracker.ts                 	* Automatic issue tracking to FogBugz
+│   ├── DB.ts                        	* CRUD operations to / from MongoDB (except for blobs - see GridFS.ts for that)
+│   ├── Err.ts                        	* Some error classes
+│   ├── Gmail.ts                     	* Retrieves historical eBlasts from gmail (ToDo: newsletter email address has changed)
+│   ├── GridFS.ts                    	* Stores / retrieves files from MongoDB / GridFS
+│   ├── MailChimp.ts                 	* Update MailChimp with email addresses
+│   ├── Role.ts                 		* Role-based access control (RBAC) configuration
+│   ├── Rankings.ts                 	* Supports a Web Service to get pro tennis rankings every few hours
+│   ├── SendEmail.ts                 	* Uses MailGun to send emails for password resets, etc.
 │   ├── Server.ts                       * The main server source file (contains the Express setup)
-│   ├── ttcDB.ts                        * CRUD operations to / from MongoDB
-│   ├── ttcGmail.ts                     * Retrieves historical emails from gmail
-│   ├── ttcGridFS.ts                    * Stores / retrieves files from GridFS
-│   ├── ttcMailChimp.ts                 * Update MailChimp with email addresses
-│   ├── ttcGmail.ts                     * Retrieves historical emails from gmail
-│   ├── ttcTrack.ts                     * Automatic issue tracking to FogBugz
+│   ├── SocketIo.ts                     * Implements the application usage of socketio (supports reset password)
 │   │
 │   └── test/                           * Server test folder
-│       └── test-server.ts              * A test script to test NodeJS / Express
+│       └── test-server.ts              * A test script to test NodeJS / Express (ToDo: about 200 Test Cases, but more are needed)
 │   
 ├── index.html                          * HTML entry point
 ├── package.json                        * JavaScript dependencies
@@ -138,4 +140,5 @@ ttc-website-ng2/
 <li>Provide user level documention</li>
 <li>Provide technical documentation</li>
 <li>Provide chat room features</li>
+<li>Provide a new screen to display the club's league teams
 </ul>
