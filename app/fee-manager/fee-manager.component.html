@@ -1,0 +1,55 @@
+<message-modal (onClosed)="messageClosed($event)">
+</message-modal>
+<div class="container" style="color: #006666;">
+	<div class="container">
+		<md-progress-bar *ngIf="isLoading" mode="indeterminate" color="warn"></md-progress-bar>
+		<div class="page-header">
+			<h3>Fee Management</h3>
+		</div>
+		<div class="col-xs-3 col-sm-4 col-md-3">
+			<label for="searchkey">Search</label>
+			<input id="searchKeyId" class="form-control input-sm" placeholder="Search by Account Name" [(ngModel)]="searchKey" type="search"
+				autofocus/>
+		</div>
+		<!-- Accounting Year Selection-->
+		<div class="col-xs-3 col-sm-4 col-md-3">
+			<label for="accountingyear">Accounting Year</label>
+			<select id="accountingYearId" class="form-control input-sm" name="accountYearSelect" [(ngModel)]="accountingYear">
+				<option value=2016>2016</option>
+				<option value=2017>2017</option>
+				<option value=2018>2018</option>
+				<option value=2019>2019</option>
+				<option value=2020>2020</option>
+				<option value=2021>2021</option>
+				<option value=2022>2022</option>
+				<option value=2023>2023</option>
+				<option value=2024>2024</option>
+				<option value=2025>2025</option>
+		</select>
+		</div>
+		<div class="col-xs-3 col-sm-4 col-md-3">
+			<span style="display: inline-block; width: 200px;">
+        <input id="unpaidOnlyId" type="checkbox" [(ngModel)]="unpaidonly"><strong>&nbsp;Unpaid Only</strong>
+		</span>
+		</div>
+	</div>
+	<div class="container">
+		<hr>
+		<div class="row">
+			<div class="col-xs-12 col-sm-4 col-md-3 col-lg-3" *ngFor="let account of filteredAccounts">
+				<p class="text-center" style="background-color: rgb(254,174,18); color: white; border-radius: 4px;">{{account.accountname}}</p>
+				<p style="padding-left:10px;"><a href="mailto:{{account.emailaddress}}">{{account.emailaddress}}</a></p>
+				<div>
+					<h4 style="padding-left:10px;">Fees: ${{account.fees}}, Paid:&nbsp;
+						<input [disabled]="!userService.hasPermission('accounts:update')" type="checkbox" [(ngModel)]="account.paid" (click)="togglePaid (account)">
+					</h4>
+				</div>
+				<ul style="list-style:none; padding-left:10px; list-style-type: none;" *ngFor="let member of account.family">
+					<li style="margin: 0 0;">
+						<p>{{member.firstname}}&nbsp;{{member.familyname}}<br>{{member.dob}}</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

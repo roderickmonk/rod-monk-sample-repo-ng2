@@ -1,0 +1,21 @@
+export interface MemberInterface {
+		_id?: string,
+		firstname?: string,
+		familyname?: string,
+		dob?: string,
+		emailaddress?: string,
+		student?: boolean,
+		familyemailaddress?: string,
+		primaryphone?: string,
+		alternativephone?: string,
+		address?: string,
+		place?: string,
+		postcode?: string,
+		liabilityagreed?: boolean,
+		communicationsagreed?: boolean,
+		photoagreed?: boolean,
+		joiningyear?: number,
+		exec?: string,
+		role?: string,
+		password?: string
+	}

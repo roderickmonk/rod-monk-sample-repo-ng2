@@ -1,0 +1,98 @@
+<message-modal (onClosed)="messageClosed($event)">
+</message-modal>
+<div class="container" style="color: #006666;">
+	<div class="page-header">
+        <h3>Search Membership</h3>
+    </div>
+	<md-progress-bar *ngIf="isLoading" mode="indeterminate" color="warn"></md-progress-bar>
+	<div class="hidden-xs hidden-sm col-md-3">
+		<div class="panel" style="background-color: rgba(0,0,0,0.0);">
+			<div class="panel-heading" style="background-image: none; background-color: rgba(254,174,18,0.4); color:#006666;">
+				<h3 class="h4 text-center">Club Rules
+				</h3>
+			</div>
+			<ul class="list-group">
+				<li class="list-group-item" style="background-color: rgba(0,0,0,0.0);">
+					<p class="h5">Proper tennis attire is required. Whites are not mandatory but non-marking tennis shoes ARE mandatory.
+					</p>
+				</li>
+				<li class="list-group-item" style="background-color: rgba(0,0,0,0.0);">
+					<p class="h5">
+						Courts are restricted to TTC Members, their guests, and sanctioned League play only.
+					</p>
+				</li>
+				<li class="list-group-item" style="background-color: rgba(0,0,0,0.0);">
+					<p class="h5">
+						Keys are for Adults only. Juniors are permitted to hold keys only at the discretion of the Executive.
+					</p>
+				</li>
+				<li class="list-group-item" style="background-color: rgba(0,0,0,0.0);">
+					<p class="h5">
+						Please respect our neighbours&#39; privacy! All balls going over the fence into their backyards must be considered lost.
+						Members are not permitted to climb any fence or to enter any yard to retrieve balls.
+					</p>
+				</li>
+				<li class="list-group-item" style="background-color: rgba(0,0,0,0.0);">
+					<p class="h5">
+						Damage to windscreens, nets, clubhouse, shed or other TTC property should be reported to any Executive Committee member,
+						whose names are on the 'Contact Us' page of this website.
+					</p>
+				</li>
+				<li class="list-group-item" style="background-color: rgba(0,0,0,0.0);">
+					<p class="h5">
+						The last Member to leave the courts is responsible for ensuring that the court gates, clubhouse, and shed doors are securely
+						locked, all equipment [e.g. brooms, chairs etc.] is stored inside the clubhouse or shed, and all the court (see below)
+						and clubhouse lights are turned off.
+					</p>
+				</li>
+				<li class="list-group-item" style="background-color: rgba(0,0,0,0.0);">
+					<p class="h5">
+						Please be sure to check and lock the gate, clubhouse and shed door because vandalism can cause enormous expense to the Club.
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<input type="search" id="searchKeyId" class="form-control input-sm" placeholder="Search Membership" [(ngModel)]="searchKey"
+			autofocus/>
+		<br>
+		<div class="row">
+			<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" *ngFor="let x of filteredMembers">
+				<strong>{{x.firstname + ' ' + x.familyname}}</strong>
+				<p>
+					&nbsp;<a href="mailto:{{x.emailaddress}}">{{x.emailaddress}}</a><br> &nbsp;{{x.primaryphone}}
+					<br> &nbsp;{{x.alternativephone}}
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="panel" style="background-color: rgba(0,0,0,0.0);">
+			<div class="panel-heading" style="background-image: none; background-color: rgba(254,174,18,0.5); color:#006666;" id="rankings-panel">
+				<h3 class="h4 text-center" id="rankings-label">
+					{{rankingGenderLabel}} <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+				</h3>
+				<p class="h6 text-center">
+					<em>Powered by...</em>
+					<img src="/assets/images/goalserve.jpeg" class="img-responsive" border="0" style="display: inline-block; width: 100px; height: 15px;"
+						alt="Responsive image">
+				</p>
+			</div>
+			<div class="panel-body">
+				<table class="table table-striped table-condensed">
+					<tbody *ngFor="let x of filteredRankings">
+						<tr style="background-color: rgba(0,0,0,0.0);">
+							<td>
+								{{x.rank}}
+							</td>
+							<td>
+								{{x.name}} {{x.countryEmoji}}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>

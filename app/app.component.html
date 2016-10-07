@@ -1,0 +1,148 @@
+<message-modal></message-modal>
+<join-modal></join-modal>
+<personal-profile-modal></personal-profile-modal>
+<change-password-modal></change-password-modal>
+<renew-membership-modal></renew-membership-modal>
+<newsitem-manager-modal></newsitem-manager-modal>
+<login-modal></login-modal>
+<table-section></table-section>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                </button>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <!-- Home -->
+                <li><a [routerLink]="['Home']">Home</a></li>
+                <li><a [routerLink]="['Calendar']">Calendar</a></li>
+                <li><a [routerLink]="['NewsItems']">News</a></li>
+
+                <li><a [routerLink]="['AboutUs']">About Us</a></li>
+                <li><a [routerLink]="['ContactUs']">Contact Us</a></li>
+                <li><a *ngIf="!userService.isLoggedIn()" (click)="DisplayJoin()" style="cursor:pointer">Join</a></li>
+
+                <!-- Members Only -->
+                <li id="membersOnlyMenuItem" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" *ngIf="userService.isLoggedIn()" style="cursor:pointer">Members Only<span class="caret"></span></a>
+                    <ul class="dropdown-menu" style="background-color: rgb(254,174,18); color: white;">
+                        <li id="searchMembershipMenuItem" [hidden]="!userService.hasPermission('members:read')">
+                            <a [routerLink]="['SearchMembership']">Search Membership</a>
+                        </li>
+
+                        <li> <a (click)="DisplayPersonalProfile()" style="cursor:pointer">Personal Profile</a></li>
+                        <li> <a (click)="DisplayChangePassword()" style="cursor:pointer">Change Password</a></li>
+                        <li> <a (click)="DisplayRenewMembership()" style="cursor:pointer">Renew Membership</a></li>
+                        <li id="document-manager-menu-item">
+                            <a [routerLink]="['DocumentManager']">Club Documents</a>
+                        </li>
+                        <li [hidden]="!userService.hasPermission('newsitems:create')">
+                            <a (click)="DisplayNewsItemManagement()" style="cursor:pointer">Add News Items</a>
+                        </li>
+
+                        <!--<li id="eBlastsMenuItem">
+									<a class="btn btn-primary" ng-disabled="!user.isLoggedIn()" data-toggle="collapse" 
+									   data-target=".navbar-collapse" href="#eBlasts" 
+									   ng-show="user.isLoggedIn()">Recent eBlasts</a></li>-->
+
+                        <li id="feeManagerMenuItem" [hidden]="!userService.hasPermission('accounts:read')">
+                            <a [routerLink]="['FeeManager']">Fee Management</a>
+                        </li>
+                        <li id="feeConfigurationMenuItem" [hidden]="!userService.hasPermission('accounts:read')">
+                            <a [routerLink]="['FeeConfiguration']">Fee Configuration</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li id="loginMenuItem">
+                    <a data-toggle="collapse" data-target=".navbar-collapse" *ngIf!="userService.isLoggedIn()" (click)="DisplayLogin()" style="cursor:pointer">Login</a>
+                </li>
+                <li id="loginFirstNameItem">
+                    <a data-toggle="dropdown-toggle" data-toggle="dropdown" *ngIf="userService.isLoggedIn()" style="cursor:pointer">
+                        {{member.firstname}}<span class="caret"></span></a>
+                    <ul *ngIf="userService.isLoggedIn()" class="dropdown-menu" style="background-color: rgb(254,174,18);">
+                        <li id="loggedInAsItem">
+                            <a data-toggle="collapse" data-target=".navbar-collapse">
+                                <p>
+                                    <span class="glyphicon glyphicon-user " aria-hidden="true "></span>
+                                    &nbsp;{{member.firstname}}, {{member.emailaddress}}
+                                </p>
+                            </a>
+                        </li>
+                        <li id="logoutMenuItem">
+                            <a style="cursor:pointer;" data-toggle="collapse" data-target=".navbar-collapse" (click)="logout()">
+                                <p>
+                                    <span class="glyphicon glyphicon-log-out " aria-hidden="true "></span>
+                                    &nbsp;Logout
+                                </p>
+                            </a>
+                        </li>
+                        <li id="feesMenuItem">
+                            <a data-toggle="collapse" data-target=".navbar-collapse">
+                                <p>
+                                    <span class="glyphicon glyphicon-usd" aria-hidden="true "></span>
+                                    &nbsp;{{fees}}&nbsp;Owing
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a [routerLink]="['OnlineHelp']">
+                        <img src="/assets/images/help.png" border="0" style="display: block; margin-left: auto; margin-right: auto">                        </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8">
+                <h1 class="visible-lg-block">Tallahassee Tennis Club</h1>
+                <h2 class="visible-md-block">Tallahassee Tennis Club</h2>
+                <h1 class="visible-sm-block">Tallahassee Tennis Club</h1>
+                <h1 class="visible-xs-block">Tallahassee Tennis Club</h1>
+                <p class="hidden-xs hidden-sm"><em>"The friendliest little tennis club in Metro Vancouver"</em></p>
+            </div>
+            <div class="hidden-xs col-sm-6 col-md-5 col-lg-4">
+                <div style="top:0px; margin-left:50px; margin-right: auto; width:287px; height:191px;">
+                    <!-- Begin WeatherLink Fragment -->
+                    <iframe title="Environment Canada Weather" width="287px" height="191px" src="//weather.gc.ca/wxlink/wxlink.html?cityCode=bc-74&amp;lang=e"
+                        allowtransparency="true" frameborder="0" align="center"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="color=#006666">
+    <router-outlet>
+    </router-outlet>
+</div>
+<div class="container">
+    <hr>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-4">
+            <a href="http://www.digerati-strategies.com" title="Digerati Strategies" target="_blank" style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #6E6A68; text-decoration: none ;">
+                <p class="small text-center" style="line-height:60%;">www.Digerati-Strategies.com</p>
+                <p class="small text-center" style="line-height:60%;">{{platformDesciptor}}</p>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4">
+            <a href="http://www.hitwebcounter.com" target="_blank">
+                <img src="http://hitwebcounter.com/counter/counter.php?page=6214011&style=0038&nbdigits=5&type=ip&initCount=0" title="Unique Visitor Counter"
+                    Alt="Unique Visitor Counter" border="0" style="display: block; margin-left: auto; margin-right: auto">
+            </a>
+            <a href="http://www.hitwebcounter.com" title="Count Stats Visits" target="_blank" style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #6E6A68; text-decoration: none ;">
+                <p class="small text-center">Unique Visitors</p>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-4">
+            <img src="/assets/images/mean.jpg" border="0" style="display: block; margin-left: auto; margin-right: auto">
+        </div>
+    </div>
+</div>

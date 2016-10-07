@@ -1,0 +1,40 @@
+<message-modal (onClosed)="messageModalClosed($event)"></message-modal>
+<div class="container">
+	<form [formGroup]="ActivateAccountForm" novalidate>
+		<div class="col-xs-12 col-sm-7">
+			<div class="form-group">
+				<label for="newpassword">You will need to provide a password in order to complete activation</label>
+				<input type="password" class="form-control" id="newpassword" #newpassword="ngForm" [formControl]="ActivateAccountForm.controls['newpassword']"
+					[(ngModel)]="changepassword.first">
+				<div *ngIf="newpassword.control.hasError( 'invalidPassword') && !newpassword.control.pristine" class="alert alert-danger">
+					A password must have between 8 and 16 characters.
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-7">
+			<div class="form-group">
+				<label for="confirmpassword">Repeat Password</label>
+				<input type="password" class="form-control" id="confirmpassword" #confirmpassword="ngForm" [formControl]="ActivateAccountForm.controls['confirmpassword']"
+					[(ngModel)]="changepassword.second">
+				<div *ngIf="confirmpassword.control.hasError( 'invalidPassword') && !confirmpassword.control.pristine" class="alert alert-danger">
+					A password must have between 8 and 16 characters.
+				</div>
+				<div *ngIf="changepassword.first != changepassword.second && !confirmpassword.control.pristine" class="alert alert-danger">
+					The Confirm Password does not match.
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="col-xs-12 col-sm-7">
+			<div>
+				<button type="submit" class="btn btn-primary" [disabled]="
+							ActivateAccountForm.pristine || 
+                    		!ActivateAccountForm.valid ||
+							!firstName ||
+							!emailAddress" (click)="activateAccount()">
+                    Activate Account
+            </button>
+			</div>
+		</div>
+	</form>
+</div>
